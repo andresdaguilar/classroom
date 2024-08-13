@@ -1,0 +1,107 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Classroom Booking API",
+        "version": "1.0"
+    },
+    "paths": {
+        "/api/bookings": {
+            "post": {
+                "tags": [
+                    "Bookings"
+                ],
+                "summary": "Book a classroom",
+                "description": "Book a classroom for a specific time slot",
+                "operationId": "e4cace7a4127ced470f44cda22bf1cca",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "classroom_id": {
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "start_time": {
+                                        "type": "string",
+                                        "example": "2024-08-10 10:00:00"
+                                    },
+                                    "attendees": {
+                                        "type": "integer",
+                                        "example": 5
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Class booked successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                }
+            }
+        },
+        "/api/bookings/{id}": {
+            "delete": {
+                "tags": [
+                    "Bookings"
+                ],
+                "summary": "Cancel a booking",
+                "description": "Cancel a previously booked class",
+                "operationId": "07ce2f33c7b470504ef5fa3baefbf341",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Booking canceled successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Booking not found"
+                    }
+                }
+            }
+        },
+        "/api/classrooms": {
+            "get": {
+                "tags": [
+                    "Classrooms"
+                ],
+                "summary": "Get list of all classrooms",
+                "description": "Returns list of classrooms",
+                "operationId": "2f72f5470de53ee3c1b98260a19b95ac",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Bookings",
+            "description": "Bookings"
+        },
+        {
+            "name": "Classrooms",
+            "description": "Classrooms"
+        }
+    ]
+}
